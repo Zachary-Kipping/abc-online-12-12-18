@@ -1,6 +1,6 @@
 <app-video-card
   *ngFor="let video of videos"
-  (click)="selectedId = video.id"
+  (videoSelect)="videoSelected.emit($event)"
   [video]="video"
   [selected]="selectedId === video.id"
 ></app-video-card>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Video } from '../../app-types';
 
@@ -8,12 +8,20 @@ import { Video } from '../../app-types';
   styleUrls: ['./video-card.component.scss']
 })
 export class VideoCardComponent implements OnInit {
-  @Input() video: Video;
-  @Input() selected: boolean;
+  @Input() video?: Video;
+  @Input() selected?: boolean;
+  @Output() videoSelect = new EventEmitter<Video>();
 
   constructor() { }
 
   ngOnInit() {
+
+  }
+
+  videoClicked() {
+    if (this.video) {
+      this.videoSelect.emit(this.video);
+    }
   }
 
 }
