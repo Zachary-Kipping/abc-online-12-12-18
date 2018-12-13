@@ -1,6 +1,6 @@
 <app-video-list
   [selectedId]="selectedVideo?.id"
-  [videos]="videoList"
+  [videos]="videoList | async"
   (videoSelected)="this.selectedVideo = $event"
 ></app-video-list>
 <app-video-player [video]="selectedVideo"></app-video-player>
