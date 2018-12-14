@@ -1,5 +1,5 @@
 <app-video-list
-  [selectedId]="selectedVideo | async"
+  [selectedId]="(selectedVideo | async)?.id"
   [videos]="videoList | async"
 ></app-video-list>
 <app-video-player [video]="selectedVideo | async"></app-video-player>

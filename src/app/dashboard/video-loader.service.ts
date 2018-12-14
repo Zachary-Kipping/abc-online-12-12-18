@@ -25,4 +25,8 @@ export class VideoLoaderService {
         ))
       );
   }
+
+  getVideo(id: string): Observable<Video> {
+    return this.http.get<Video>(API_URL + '/videos/' + id);
+  }
 }
