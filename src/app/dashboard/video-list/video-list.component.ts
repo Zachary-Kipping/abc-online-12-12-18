@@ -9,7 +9,6 @@ import { Video } from '../../app-types';
 })
 export class VideoListComponent implements OnInit {
   @Input() videos?: Video[];
-  @Output() videoSelected = new EventEmitter<Video>();
 
   @Input() selectedId?: string;
 

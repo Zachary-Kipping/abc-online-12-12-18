@@ -1,28 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { Observable} from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 
 import { Video } from '../../app-types';
 import { VideoLoaderService } from '../video-loader.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-video-dashboard',
   templateUrl: './video-dashboard.component.html',
   styleUrls: ['./video-dashboard.component.scss']
 })
-export class VideoDashboardComponent implements OnInit {
-  selectedVideo?: Video;
+export class VideoDashboardComponent {
+  selectedVideo: Observable<string>;
   videoList: Observable<Video[]>;
 
-  constructor(vls: VideoLoaderService) {
-    this.videoList = vls.getVideos().pipe(
-      tap(videos => {
-        this.selectedVideo = videos[0];
-      }),
+  constructor(vls: VideoLoaderService, route: ActivatedRoute) {
+    this.videoList = vls.getVideos();
+
+    this.selectedVideo = route.queryParams.pipe(
+      map(params => params['id'])
     );
   }
 
-  ngOnInit() {
+  applyFilter(filter: string) {
+    console.log(filter);
   }
 
 }
